@@ -1,0 +1,36 @@
+body{
+    background-color: lightblue;
+}
+table{
+    border-style: solid;
+    border-width: 5px;
+    border-color: darkorange;
+}
+td{
+    border-style: solid;
+    border-color: aqua;
+    color:green;
+}
+th{
+    border-style: solid;
+    border-color: aquamarine;
+    color:yellow;
+}
+h1{
+    color:greenyellow;
+    font-style: italic;
+}
+h2{
+    color:red;
+}
+p{
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+sup{
+    color:red;
+}
+li{
+    color:orange;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
