@@ -1,20 +1,30 @@
 const DataModel = require('./data_model');
 
+
 class User {
     constructor(id, firstname, lastname, email, password, matricNumber, program, graduationYear) {
 
-       
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.password = password;
+        this.matricNumber = matricNumber;
+        this.program = program;
+        this.graduationYear = graduationYear;
     }
 
     getFullName() {
-      return this.firstname, this.lastname;
+      return this.firstname +" "+ this.lastname;
     }
 }
 
 class Users extends DataModel {
     authenticate(email, password) {
-        if(email === this.data.email && password === this.data.password){
-            return true;
+        for(var i = 0 ; i<= this.data.length;i++){
+            if(email === this.data[i].email && password === this.data[i].password){
+                return true;
+            }
         }
         return false;
     }
@@ -38,9 +48,9 @@ class Users extends DataModel {
     }
 
     validate(obj) {
-        if(!Object.values(obj).includes(null)){
+        if(!Object.values(obj).includes(null)){ 
             if(this.data.filter(User=> User.matricNumber === obj.matricNumber|| User.email === obj.email).length ===0){
-                if(obj.password>=7){
+                if(obj.password.length>=7){
                     return true;
                 }else{
                     return false;

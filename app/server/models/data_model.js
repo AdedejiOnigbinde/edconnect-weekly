@@ -8,14 +8,12 @@ class DataModel {
     }
 
     getById(id) {
-        this.id = id;
-        var index = this.data.find(id => id.obj === id);
-
-        if(index == undefined){
-            return null;
-        }else{
-            return index;
-        }
+        for (const obj of this.data) {
+            if (obj.id === id){
+                return obj;
+            }
+        };
+        return null;
     }
 
     save(obj) {
@@ -26,35 +24,38 @@ class DataModel {
         return false;
     }
 
-    update(obj, id) {
-
-        this.obj = obj;
-        this.id = id;
-
-        var index = this.data.findindex(obj => obj.id == id);
-        if (index === -1) {
-            return false;
-        } else {
-            let copyArray = [...this.data.obj];
-            copyArray[index] = { ...copyArray[index], obj: !copyArray[index].obj }
-            this.setState({ obj: copyArray })
-            return true;
-
+    getIndexOf(id){
+        let index = -1;
+        for(var i = 0; i <= this.data.length; i++ ){
+            if(id === this.data[i].id){
+                return i;
+            }
         }
+        return index;
+    }
 
+    update(obj, id) {
+        const index = this.getIndexOf(id);
+        if(index > -1){
+            var temp = this.data[index];
+            for (const property in obj) {
+                temp[property] = obj[property];
+            }
+            this.data[index] = temp;
+            return true;
+        }
+        return false;
     }
 
     delete(id) {
-        this.id = id;
-        for (var i; i < this.data.length; i++) {
-            if (this.data[i].id == id) {
-                var index = this.data.indexOf(this.data[i])
-            }
+        const index = this.getIndexOf(id);
+       
             if (index > -1) {
-                this.data.slice(index, index);
+                this.data.splice(index, 1);
+                return true;
             }
-            return true;
-        }
+            
+        
         return false;
     }
 
