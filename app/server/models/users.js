@@ -21,7 +21,7 @@ class User {
 
 class Users extends DataModel {
     authenticate(email, password) {
-        for(var i = 0 ; i<= this.data.length;i++){
+        for(var i = 0 ; i< this.data.length;i++){
             if(email === this.data[i].email && password === this.data[i].password){
                 return true;
             }

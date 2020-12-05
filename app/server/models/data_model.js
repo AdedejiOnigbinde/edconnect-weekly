@@ -26,7 +26,7 @@ class DataModel {
 
     getIndexOf(id){
         let index = -1;
-        for(var i = 0; i <= this.data.length; i++ ){
+        for(var i = 0; i < this.data.length; i++ ){
             if(id === this.data[i].id){
                 return i;
             }
