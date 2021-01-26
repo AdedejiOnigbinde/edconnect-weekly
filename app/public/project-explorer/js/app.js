@@ -106,7 +106,7 @@ function logInPost() {
                     document.getElementById('loginForm').prepend(errorAlert2);
                     let err = document.getElementById('erroralert2');
                     errorText = document.createElement('h6');
-                    errorText.innerText = "Invalid Username/Password";
+                    errorText.innerText = "Invalid email/password";
                     err.append(errorText);
 
                 }
