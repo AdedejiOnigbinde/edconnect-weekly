@@ -1,6 +1,5 @@
 var user = null;
 let url = window.location.href.split('/').pop();
-let url2 = window.location.href;
 function programs() {
     let programDropdown = document.getElementById('Program');
     programDropdown.length = 0;
@@ -270,8 +269,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
         logOut();
     } else if (url.startsWith('viewProject.html')) {
         projectView();
+        logOut();
     }
-    else if ((url.startsWith('search.html') || url.startsWith('viewProject.html') || url.startsWith('profile.html') || url.startsWith('editProject.html'))) {
+    else if ((url.startsWith('search.html') || url.startsWith('profile.html') || url.startsWith('editProject.html'))) {
         logOut();
     }
 
