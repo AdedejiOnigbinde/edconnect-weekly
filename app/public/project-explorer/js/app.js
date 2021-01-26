@@ -236,7 +236,7 @@ function showLoggedInUser() {
     let authElements = document.querySelectorAll('.auth-buttons');
     if (user) {
         authElements[1].classList.toggle('hidden')
-        document.getElementById("userId").textContent = 'Hi ' + user.firstname;
+        document.getElementById("username").textContent = 'Hi ' + user.firstname;
     } else {
         authElements[0].classList.toggle('hidden')
     }
