@@ -6,6 +6,7 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState();
+    let history = useHistory();
     const handleChange = event => {
         const { name, value } = event.target;
         switch (name) {
@@ -19,8 +20,7 @@ const Login = () => {
         }
     }
     
-    const PostUserData = event => {
-        let history = useHistory();
+    const PostUserData = () => {
         fetch('http://localhost:4000/api/login', {
             method: 'POST',
             headers: {

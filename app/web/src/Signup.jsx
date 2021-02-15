@@ -38,7 +38,7 @@ const SignUp = () => {
             default:
         }
     }
-    const PostUserData = event => {
+    const PostUserData = () => {
         fetch('http://localhost:4000/api/register', {
             method: 'POST',
             headers: {
