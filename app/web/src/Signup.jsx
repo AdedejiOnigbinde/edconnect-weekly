@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-import {useHistory} from 'react-router-dom';
+// import {useHistory} from 'react-router-dom';
 import { Form, Button, Col, Container, Alert } from 'react-bootstrap';
 import Layout from './shared/Layout';
 const SignUp = () => {
@@ -39,8 +39,6 @@ const SignUp = () => {
         }
     }
     const PostUserData = event => {
-        let history = useHistory();
-        event.preventDefault();
         fetch('http://localhost:4000/api/register', {
             method: 'POST',
             headers: {
@@ -59,11 +57,8 @@ const SignUp = () => {
             const resp = await response.json()
             if (response.status === 200) {
                 document.cookie = `uid=${resp.data.id}; max-age=${60 * 60 * 24 * 7}; path=/`;
-                history.push("/");
             } else {
-                resp.errors.map((value) =>{
-                })
-                setError();
+                setError('Retry');
             }
         });
 
@@ -75,7 +70,7 @@ const SignUp = () => {
                 <Container>
                     {error ? <Alert variant={'danger'}>{error}</Alert> : null}
                     <h1>Register</h1>
-                    <Form onSubmit={PostUserData}>
+                    <Form>
                         <Form.Row>
                             <Col>
                                 <Form.Group>
@@ -120,7 +115,7 @@ const SignUp = () => {
                                 </Form.Row>
                             </Col>
                         </Form.Row>
-                        <Button variant='primary' type='submit'>
+                        <Button variant='primary' onClick={PostUserData}>
                             Sign Up
                         </Button>
                     </Form>

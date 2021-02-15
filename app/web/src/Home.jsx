@@ -8,7 +8,7 @@ const Home = () => {
             <>
                 <Jumbotron >
                     <div>
-                        < h1 class="display-6" > Welcome To Project Explorer</h1 >
+                        < h1 className="display-6" > Welcome To Project Explorer</h1 >
                     </div>
                     <p>
                         Project Explorer is a repository for final year projects across all

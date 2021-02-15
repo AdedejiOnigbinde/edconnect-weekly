@@ -18,10 +18,9 @@ const Login = () => {
             default:
         }
     }
-
+    
     const PostUserData = event => {
         let history = useHistory();
-        event.preventDefault();
         fetch('http://localhost:4000/api/login', {
             method: 'POST',
             headers: {
@@ -35,18 +34,19 @@ const Login = () => {
             const resp = await response.json()
             if (response.status === 200) {
                 document.cookie = `uid=${resp.data.id}; max-age=${60 * 60 * 24 * 7}; path=/`;
-                history.push("/");
+                history.push('/')
             } else {
                 setError('invalid email/password');
             }
         });
 
     }
+
     return (
         <Layout>
             <>
 
-                <Form className='w-50 mx-auto' onSubmit={PostUserData}>
+                <Form className='w-50 mx-auto'>
                     {error ? <Alert variant={'danger'}>{error}</Alert> : null}
                     <h1>Login</h1>
                     <Form.Group>
@@ -57,7 +57,7 @@ const Login = () => {
                         <Form.Label>Password</Form.Label>
                         <Form.Control type='password' placeholder="Password" name='Password' value={password} onChange={handleChange} />
                     </Form.Group>
-                    <Button variant='primary' type='submit'>
+                    <Button variant='primary' onClick={PostUserData}>
                         Login
                         </Button>
                 </Form>
