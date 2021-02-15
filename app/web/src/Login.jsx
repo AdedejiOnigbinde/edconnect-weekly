@@ -6,19 +6,19 @@ const Login = () => {
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [error, setError] = useState();
-    let history = useHistory();
-    const handleChange = event => {
-        const { name, value } = event.target;
-        switch (name) {
-            case 'Email':
-                setEmail(value);
-                break;
-            case 'Password':
-                setPassword(value);
-                break;
-            default:
-        }
-    }
+    const history = useHistory();
+    // const handleChange = event => {
+    //     const { name, value } = event.target;
+    //     switch (name) {
+    //         case 'Email':
+    //             setEmail(value);
+    //             break;
+    //         case 'Password':
+    //             setPassword(value);
+    //             break;
+    //         default:
+    //     }
+    // }
     
     const PostUserData = () => {
         fetch('http://localhost:4000/api/login', {
@@ -51,11 +51,11 @@ const Login = () => {
                     <h1>Login</h1>
                     <Form.Group>
                         <Form.Label>Email Address</Form.Label>
-                        <Form.Control type='email' placeholder="Email Address" name='Email' value={email} onChange={handleChange} />
+                        <Form.Control type='email' placeholder="Email Address" name='Email' value={email} onchage={(e) => setEmail(e.target.value)} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type='password' placeholder="Password" name='Password' value={password} onChange={handleChange} />
+                        <Form.Control type='password' placeholder="Password" name='Password' value={password} onchage={(e) => setPassword(e.target.value)} />
                     </Form.Group>
                     <Button variant='primary' onClick={PostUserData}>
                         Login

@@ -1,5 +1,5 @@
 import React, { useState} from 'react';
-// import {useHistory} from 'react-router-dom';
+import {useHistory} from 'react-router-dom';
 import { Form, Button, Col, Container, Alert } from 'react-bootstrap';
 import Layout from './shared/Layout';
 const SignUp = () => {
@@ -11,6 +11,7 @@ const SignUp = () => {
     const [matricnumber, setMatricNumber] = useState('')
     const [graduationyear, setGraduationYear] = useState('')
     const [error, setError] = useState();
+    const history = useHistory();
     const handleChange = event => {
         const { name, value } = event.target;
         switch (name) {
@@ -57,6 +58,7 @@ const SignUp = () => {
             const resp = await response.json()
             if (response.status === 200) {
                 document.cookie = `uid=${resp.data.id}; max-age=${60 * 60 * 24 * 7}; path=/`;
+                history.push('/')
             } else {
                 setError('Retry');
             }
