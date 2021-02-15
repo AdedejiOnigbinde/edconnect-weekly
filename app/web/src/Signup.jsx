@@ -3,6 +3,8 @@ import {useHistory} from 'react-router-dom';
 import { Form, Button, Col, Container, Alert } from 'react-bootstrap';
 import Layout from './shared/Layout';
 const SignUp = () => {
+    const [graduationlist , setGraduationList] = useState([])
+    const [programlist , setProgramList] = useState([])
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [firstname, setFirstName] = useState('')
@@ -10,7 +12,7 @@ const SignUp = () => {
     const [programs, setPrograms] = useState('')
     const [matricnumber, setMatricNumber] = useState('')
     const [graduationyear, setGraduationYear] = useState('')
-    const [error, setError] = useState();
+    const [error, setError] = useState([]);
     const history = useHistory();
     const handleChange = event => {
         const { name, value } = event.target;
@@ -39,6 +41,14 @@ const SignUp = () => {
             default:
         }
     }
+    const getGraduationYear = () =>{
+        fetch('http://localhost:4000/api/graduationYears')
+            .then(async function (response){
+                  const resp = await response.json();
+                  setGraduationList(resp);
+            })
+        
+    }
     const PostUserData = () => {
         fetch('http://localhost:4000/api/register', {
             method: 'POST',
@@ -60,17 +70,17 @@ const SignUp = () => {
                 document.cookie = `uid=${resp.data.id}; max-age=${60 * 60 * 24 * 7}; path=/`;
                 history.push('/')
             } else {
-                setError('Retry');
+                setError(resp.errors);
             }
         });
 
     }
+    
     return (
         <Layout>
             <>
-
                 <Container>
-                    {error ? <Alert variant={'danger'}>{error}</Alert> : null}
+                    {error && error.map((error) => <Alert variant={'danger'}>{error}</Alert>)}
                     <h1>Register</h1>
                     <Form>
                         <Form.Row>
@@ -109,7 +119,8 @@ const SignUp = () => {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>Graduation Year</Form.Label>
-                                            <Form.Control as='select' name='matricnumber' value={matricnumber} onChange={handleChange}>
+                                            <Form.Control as='select' name='matricnumber' 
+                                             {...graduationlist.map((graduationlist) => <option>{graduationlist}</option>)} value={matricnumber} onChange={handleChange}>
                                                 <option>choose...</option>
                                             </Form.Control>
                                         </Form.Group>
