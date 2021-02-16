@@ -1,10 +1,10 @@
-import React, { useState} from 'react';
-import {useHistory} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Button, Col, Container, Alert } from 'react-bootstrap';
 import Layout from './shared/Layout';
 const SignUp = () => {
-    const [graduationlist , setGraduationList] = useState([])
-    const [programlist , setProgramList] = useState([])
+    const [graduationlist, setGraduationList] = useState([])
+    const [programlist, setProgramList] = useState([])
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
     const [firstname, setFirstName] = useState('')
@@ -14,6 +14,18 @@ const SignUp = () => {
     const [graduationyear, setGraduationYear] = useState('')
     const [error, setError] = useState([]);
     const history = useHistory();
+
+    useEffect(() => {
+        const getGraduationYear = () => {
+            fetch('http://localhost:4000/api/graduationYears')
+                .then(async function (response) {
+                    const resp = await response.json();
+                    setGraduationList(resp);
+                })
+        }
+        getGraduationYear();
+    }, []);
+
     const handleChange = event => {
         const { name, value } = event.target;
         switch (name) {
@@ -41,14 +53,8 @@ const SignUp = () => {
             default:
         }
     }
-    const getGraduationYear = () =>{
-        fetch('http://localhost:4000/api/graduationYears')
-            .then(async function (response){
-                  const resp = await response.json();
-                  setGraduationList(resp);
-            })
-        
-    }
+
+
     const PostUserData = () => {
         fetch('http://localhost:4000/api/register', {
             method: 'POST',
@@ -75,7 +81,7 @@ const SignUp = () => {
         });
 
     }
-    
+
     return (
         <Layout>
             <>
@@ -119,8 +125,8 @@ const SignUp = () => {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>Graduation Year</Form.Label>
-                                            <Form.Control as='select' name='matricnumber' 
-                                             {...graduationlist.map((graduationlist) => <option>{graduationlist}</option>)} value={matricnumber} onChange={handleChange}>
+                                            <Form.Control as='select' name='matricnumber'
+                                                {...graduationlist.map((graduationlist,index) => <option key={index}>{graduationlist}</option>)} value={matricnumber} onChange={handleChange}>
                                                 <option>choose...</option>
                                             </Form.Control>
                                         </Form.Group>
