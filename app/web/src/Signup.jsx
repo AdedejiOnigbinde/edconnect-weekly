@@ -119,16 +119,16 @@ const SignUp = () => {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>Matric Number</Form.Label>
-                                            <Form.Control type='text' placeholder="e.g 20/1234" name='graduationyear' value={graduationyear} onChange={handleChange} />
+                                            <Form.Control type='text' placeholder="e.g 20/1234" name='matricnumber' value={matricnumber} onChange={handleChange} />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>Graduation Year</Form.Label>
-                                            <Form.Control as='select' name='matricnumber'
-                                                {graduationlist.map((graduationlist, index) =>
+                                            <Form.Control as='select' name='graduationyear'
+                                                {...graduationlist && graduationlist.map((graduationlist, index) =>
                                                     <option key={index}>{graduationlist}</option>)}
-                                                value={matricnumber} onChange={handleChange}>
+                                                value={graduationyear} onChange={handleChange}>
                                                 <option>choose...</option>
                                             </Form.Control>
                                         </Form.Group>
