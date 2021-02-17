@@ -10,7 +10,7 @@ const SignUp = () => {
     const [firstname, setFirstName] = useState('')
     const [lastname, setLastName] = useState('')
     const [programs, setPrograms] = useState('')
-    const [matricnumber, setMatricNumber] = useState('')
+    const [matricNumber, setMatricNumber] = useState('')
     const [graduationyear, setGraduationYear] = useState('')
     const [error, setError] = useState([]);
     const history = useHistory();
@@ -24,6 +24,17 @@ const SignUp = () => {
                 })
         }
         getGraduationYear();
+    }, []);
+
+    useEffect(() => {
+        const getPrograms = () => {
+            fetch('http://localhost:4000/api/programs')
+                .then(async function (response) {
+                    const resp = await response.json();
+                    setProgramList(resp);
+                })
+        }
+        getPrograms();
     }, []);
 
     const handleChange = event => {
@@ -67,7 +78,7 @@ const SignUp = () => {
                 , firstname: firstname
                 , lastname: lastname
                 , programs: programs
-                , matricnumber: matricnumber
+                , matricNumber: matricNumber
                 , graduationyear: graduationyear
             })
         }).then(async function (response) {
@@ -103,6 +114,8 @@ const SignUp = () => {
                                     <Form.Label>Program</Form.Label>
                                     <Form.Control as='select' name='programs' value={programs} onChange={handleChange}>
                                         <option>choose...</option>
+                                        {programlist && programlist.map((item, index) =>
+                                            <option key={'program-list-' + item + '-' + index} >{item}</option>)}
                                     </Form.Control>
                                 </Form.Group>
                             </Col>
@@ -119,17 +132,16 @@ const SignUp = () => {
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>Matric Number</Form.Label>
-                                            <Form.Control type='text' placeholder="e.g 20/1234" name='matricnumber' value={matricnumber} onChange={handleChange} />
+                                            <Form.Control type='text' placeholder="e.g 20/1234" name='matricnumber' value={matricNumber} onChange={handleChange} />
                                         </Form.Group>
                                     </Col>
                                     <Col>
                                         <Form.Group>
                                             <Form.Label>Graduation Year</Form.Label>
-                                            <Form.Control as='select' name='graduationyear'
-                                                {...graduationlist && graduationlist.map((graduationlist, index) =>
-                                                    <option key={index}>{graduationlist}</option>)}
-                                                value={graduationyear} onChange={handleChange}>
+                                            <Form.Control as='select' name='graduationyear' value={graduationyear} onChange={handleChange}>
                                                 <option>choose...</option>
+                                                {graduationlist && graduationlist.map((item, index) =>
+                                                    <option key={'graduation-list-' + item + '-' + index} >{item}</option>)}
                                             </Form.Control>
                                         </Form.Group>
                                     </Col>
