@@ -9,35 +9,34 @@ const Header = () => {
     const [user, setUser] = useState('');
     const history = useHistory();
 
-    const getCookie = () => {
-        if (document.cookie.includes('uid')) {
-            let uidRow = document.cookie.split(';').find(row => row.startsWith('uid'));
-            if (uidRow !== -1) {
-                setUserCookie(uidRow.split('=')[1])
-            }
-        }
-        return false;
-    }
+    // const getCookie = () => {
+    //     if (document.cookie.includes('uid')) {
+    //         let uidRow = document.cookie.split(';').find(row => row.startsWith('uid'));
+    //         if (uidRow !== -1) {
+    //             setUserCookie(uidRow.split('=')[1])
+    //         }
+    //     }
+    //     return false;
+    // }
 
  
 
-    useEffect(() => {
-        const initUser = () => {
-            setUserId(userCookie)
-            if (userId) {
-                fetch('http://localhost:4000/api/users/' + userId)
-                    .then(async function (response) {
-                        const resp = await response.json();
-                        setUser(resp);
-                    })
-            }
-            return false;
+    // useEffect(() => {
+    //     const initUser = () => {
+    //         setUserId(userCookie)
+    //         if (userId) {
+    //             fetch('http://localhost:4000/api/users/' + userId)
+    //                 .then(async function (response) {
+    //                     const resp = await response.json();
+    //                     setUser(resp);
+    //                 })
+    //         }
+    //         return false;
     
-        }
-        getCookie()
-        initUser()
-    }, [userCookie,userId])
-    console.log(user)
+    //     }
+    //     getCookie()
+    //     initUser()
+    // }, [userCookie,userId])
 
     const logOut = () => {
         document.cookie = `uid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`;

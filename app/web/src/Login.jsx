@@ -3,33 +3,27 @@ import { Form, Button, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Layout from './shared/Layout';
 const Login = () => {
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
-    const [error, setError] = useState();
+    const [error, setError] = useState('')
     const history = useHistory();
-    // const handleChange = event => {
-    //     const { name, value } = event.target;
-    //     switch (name) {
-    //         case 'Email':
-    //             setEmail(value);
-    //             break;
-    //         case 'Password':
-    //             setPassword(value);
-    //             break;
-    //         default:
-    //     }
-    // }
-    
+    const [state, setState] = useState({
+        email: "",
+        password: ""
+    });
+
+    const handleChange = e => {
+        setState({
+            ...state,
+            [e.target.name]: e.target.value,
+        });
+    }
+
     const PostUserData = () => {
         fetch('http://localhost:4000/api/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({
-                email: email
-                , password: password
-            })
+            body: JSON.stringify(state)
         }).then(async function (response) {
             const resp = await response.json()
             if (response.status === 200) {
@@ -51,11 +45,11 @@ const Login = () => {
                     <h1>Login</h1>
                     <Form.Group>
                         <Form.Label>Email Address</Form.Label>
-                        <Form.Control type='email' placeholder="Email Address" name='Email' value={email} onChange={(e) => setEmail(e.target.value)} />
+                        <Form.Control type='email' placeholder="Email Address" name='email' value={state.email} onChange={handleChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Password</Form.Label>
-                        <Form.Control type='password' placeholder="Password" name='Password' value={password} onChange={(e) => setPassword(e.target.value)} />
+                        <Form.Control type='password' placeholder="Password" name='password' value={state.password} onChange={handleChange} />
                     </Form.Group>
                     <Button variant='primary' onClick={PostUserData}>
                         Login
