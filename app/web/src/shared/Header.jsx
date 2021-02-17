@@ -18,11 +18,7 @@ const Header = () => {
             }
             return false;
         }
-        getCookie();
-        console.log(userCookie)
-    }, [userCookie])
 
-    useEffect(() => {
         const initUser = () => {
             let url = window.location.href.split('/').pop();
             setUserId(userCookie)
@@ -32,14 +28,23 @@ const Header = () => {
                         const resp = await response.json();
                         setUser(resp);
                     })
-            }else if (!user && url.startsWith('createProject.html')) {
-            history.push('/login')
+            } else if (!user && url.startsWith('createProject.html')) {
+                history.push('/login')
+            }
+
         }
-        
-    }
-    initUser();
-        console.log(user)
-    },[user,getCookie()])
+        getCookie();
+        initUser();
+        return function cleanUp() {
+
+        }
+
+    })
+
+    const logOut = () => {
+        document.cookie = `uid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+        history.push('/')
+};
 
 return (
 
@@ -56,10 +61,15 @@ return (
             </Nav>
         </Nav>
 
-        <Nav className='justify-content-end'>
+        {!user && <Nav className='justify-content-end'>
             <Nav.Link href="/signup">Sign Up</Nav.Link>
             <Nav.Link href="/login">Login</Nav.Link>
-        </Nav>
+        </Nav>}
+
+        {user && <Nav className='justify-content-end'>
+            <Nav.Link onClick={logOut} >Log Out</Nav.Link>
+            <Navbar.Text>Hi + {user.firtname}</Navbar.Text>
+        </Nav>}
     </Navbar>
 );
 }
