@@ -10,6 +10,9 @@ const CreateProject = () => {
     const [state, setState] = useState({
         projectName: "",
         projectAbstract: "",
+    });
+
+    const [state2, setState2] = useState({
         author: [],
         tags: []
     });
@@ -21,19 +24,26 @@ const CreateProject = () => {
         });
     }
 
+    const handleChange2 = e => {
+        setState2({
+            ...state,
+            [e.target.name]: e.target.value,
+        });
+    }
+
     const postProject = () => {
         fetch('/api/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(state)
+
+            body: JSON.stringify(state, state2)
         }).then(async function (response) {
             const resp = await response.json()
             if (response.status === 200) {
                 history.push('/')
             } else {
-                console.log(resp.errors)
                 setErrors(resp.errors)
             }
         });
@@ -59,11 +69,11 @@ const CreateProject = () => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Authors</Form.Label>
-                        <Form.Control type='text' placeholder="Enter authors name(seperated by commas)" name='author' value={state.author} onChange={handleChange} />
+                        <Form.Control type='text' placeholder="Enter authors name(seperated by commas)" name='author' value={state2.author} onChange={handleChange2} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Tag(s)</Form.Label>
-                        <Form.Control type='text' placeholder="Use # to tag project different topics (e.g #javascript, #mongodb)" name='tags' value={state.tags} onChange={handleChange} />
+                        <Form.Control type='text' placeholder="Use # to tag project different topics (e.g #javascript, #mongodb)" name='tags' value={state2.tags} onChange={handleChange2} />
                     </Form.Group>
                     <Button variant='primary' onClick={postProject}>
                         Continue

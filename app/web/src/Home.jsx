@@ -1,8 +1,21 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Jumbotron, Button, Container, Row, Col, Card } from 'react-bootstrap';
 import Layout from './shared/Layout';
 
 const Home = () => {
+    const [projects, setProjects] = useState([])
+
+    useEffect(() => {
+        const getProjects = () => {
+            fetch('/api/projects')
+                .then(async function (response) {
+                    const resp = await response.json()
+                    setProjects(resp.slice(0, 4))
+                })
+        }
+        getProjects();
+    }, []);
+
     return (
         <Layout>
             <>
@@ -24,50 +37,20 @@ const Home = () => {
                 </Jumbotron>
                 <Container>
                     <Row>
-                        <Col>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title><Card.Link>Project 1</Card.Link></Card.Title>
-                                    <Card.Subtitle className='text-muted'>Author1, Author2</Card.Subtitle>
-                                    <Card.Text>Project Description</Card.Text>
-                                    <Card.Link href='#'>#Mongo db</Card.Link>
-                                    <Card.Link href='#'>#Database</Card.Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title><Card.Link>Project 2</Card.Link></Card.Title>
-                                    <Card.Subtitle className='text-muted'>Author1, Author2</Card.Subtitle>
-                                    <Card.Text>Project Description</Card.Text>
-                                    <Card.Link href='#'>#Administration</Card.Link>
-                                    <Card.Link href='#'>#Admin</Card.Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title><Card.Link>Project 3</Card.Link></Card.Title>
-                                    <Card.Subtitle className='text-muted'>Author1, Author2</Card.Subtitle>
-                                    <Card.Text>Project Description</Card.Text>
-                                    <Card.Link href='#'>#Fintech</Card.Link>
-                                    <Card.Link href='#'>#Analysis</Card.Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                        <Col>
-                            <Card>
-                                <Card.Body>
-                                    <Card.Title><Card.Link>Project 4</Card.Link></Card.Title>
-                                    <Card.Subtitle className='text-muted'>Author1, Author2</Card.Subtitle>
-                                    <Card.Text>Project Description</Card.Text>
-                                    <Card.Link href='#'>#Cyber_Security</Card.Link>
-                                    <Card.Link href='#'>#Pen_Test</Card.Link>
-                                </Card.Body>
-                            </Card>
-                        </Col>
+                        {projects.map((project) => (
+                            <Col key={'project-info' + project.name}>
+                                <Card >
+                                    <Card.Body>
+                                        <Card.Title><Card.Link href={'/projects/?id=' + project.id} >{project.name}</Card.Link></Card.Title>
+                                        {project.authors.map((author) =>(<Card.Subtitle className='text-muted'>{author}</Card.Subtitle>))}
+                                        <Card.Text>{project.abstract}</Card.Text>
+                                        {project.tags.map((tag)=>(<Card.Link href='#'>{tag}</Card.Link>))}
+                                    </Card.Body>
+                                </Card>
+                            </Col>
+                        ))
+                        }
+                       
                     </Row>
                 </Container>
             </>
