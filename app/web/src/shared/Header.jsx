@@ -5,7 +5,6 @@ import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
 
 const Header = () => {
     const [userCookie, setUserCookie] = useState('');
-    const [userId, setUserId] = useState('');
     const [user, setUser] = useState('');
     const history = useHistory();
 
@@ -23,9 +22,8 @@ const Header = () => {
 
     useEffect(() => {
         const initUser = () => {
-            setUserId(userCookie)
-            if (userId) {
-                fetch('http://localhost:4000/api/users/' + userId)
+            if (userCookie) {
+                fetch('http://localhost:4000/api/users/' + userCookie)
                     .then(async function (response) {
                         const resp = await response.json();
                         setUser(resp);
@@ -36,7 +34,7 @@ const Header = () => {
         }
         getCookie()
         initUser()
-    }, [userCookie,userId])
+    }, [])
 
     const logOut = () => {
         document.cookie = `uid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
