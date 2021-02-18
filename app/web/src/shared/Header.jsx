@@ -12,10 +12,9 @@ const Header = () => {
         const initUser = () => {
            let userId = getUserId()
             if (userId) {
-                fetch('http://localhost:4000/api/users/' + userId)
+                fetch('/api/users/' + userId)
                     .then(async function (response) {
                         const resp = await response.json();
-                        console.log(resp)
                         setUser(resp);
                     })
             }

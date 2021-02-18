@@ -27,7 +27,7 @@ const SignUp = () => {
 
     useEffect(() => {
         const getGraduationYear = () => {
-            fetch('http://localhost:4000/api/graduationYears')
+            fetch('/api/graduationYears')
                 .then(async function (response) {
                     const resp = await response.json();
                     setGraduationList(resp);
@@ -38,7 +38,7 @@ const SignUp = () => {
 
     useEffect(() => {
         const getPrograms = () => {
-            fetch('http://localhost:4000/api/programs')
+            fetch('/api/programs')
                 .then(async function (response) {
                     const resp = await response.json();
                     setProgramList(resp);
@@ -49,7 +49,7 @@ const SignUp = () => {
 
 
     const PostUserData = () => {
-        fetch('http://localhost:4000/api/register', {
+        fetch('/api/register', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

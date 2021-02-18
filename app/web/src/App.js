@@ -1,5 +1,4 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css'
 import React from 'react';
 import Home from './Home';
 import Signup from './Signup';
@@ -15,7 +14,7 @@ function App() {
         <Route path='/signup' component={Signup} />
         <Route path='/login' component={Login} />
         <Route path='/projects/submit' component={CreateProject} />
-        <Route path='/projects/:id' component={Project} />
+        <Route path='/projects/' component={Project} />
       </Switch>
     </Router>
   );

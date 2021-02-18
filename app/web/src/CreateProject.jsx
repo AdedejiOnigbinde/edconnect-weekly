@@ -22,7 +22,7 @@ const CreateProject = () => {
     }
 
     const postProject = () => {
-        fetch('http://localhost:4000/api/projects', {
+        fetch('/api/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -40,7 +40,7 @@ const CreateProject = () => {
     }
 
     if (!getUserId()) {
-        return <Redirect to="/" />
+        return <Redirect to="/login" />
     }
 
     return (

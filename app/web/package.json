@@ -33,7 +33,7 @@
       "not op_mini all"
     ],
 
-    "proxy": "http://localhost:4000",
+    
     
     "development": [
       "last 1 chrome version",
@@ -41,4 +41,5 @@
       "last 1 safari version"
     ]
   }
+  ,"proxy": "http://localhost:4000"
 }
