@@ -32,7 +32,7 @@ const CreateProject = () => {
             if (response.status === 200) {
                 history.push('/')
             } else {
-                setError(resp.errors);
+                setError(resp.errors)
             }
         });
     }
