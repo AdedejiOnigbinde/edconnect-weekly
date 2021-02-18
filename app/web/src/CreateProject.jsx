@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Form, Button,Alert } from 'react-bootstrap';
+import { useHistory, Redirect } from 'react-router-dom';
+import { Form, Button, Alert } from 'react-bootstrap';
 import Layout from './shared/Layout';
+import { getUserId } from './helper';
 
 const CreateProject = () => {
     const history = useHistory();
-    const [error, setError] = useState([])
+    const [errors, setErrors] = useState([])
     const [state, setState] = useState({
         projectName: "",
         projectAbstract: "",
@@ -21,7 +22,7 @@ const CreateProject = () => {
     }
 
     const postProject = () => {
-        fetch('http://localhost:4000/api/projects',{
+        fetch('http://localhost:4000/api/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -32,15 +33,21 @@ const CreateProject = () => {
             if (response.status === 200) {
                 history.push('/')
             } else {
-                setError(resp.errors)
+                console.log(resp.errors)
+                setErrors(resp.errors)
             }
         });
     }
+
+    if (!getUserId()) {
+        return <Redirect to="/" />
+    }
+
     return (
         <Layout>
             <>
                 <Form className='w-50 mx-auto'>
-                {error && error.map((error) => <Alert variant={'danger'}>{error}</Alert>)}
+                    {errors && errors.map((error) => <Alert variant={'danger'}>{error}</Alert>)}
                     <h1>Submit Project</h1>
                     <Form.Group>
                         <Form.Label>Project name</Form.Label>
