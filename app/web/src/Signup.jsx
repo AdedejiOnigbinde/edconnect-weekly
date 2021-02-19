@@ -71,7 +71,7 @@ const SignUp = () => {
         <Layout>
             <>
                 <Container>
-                    {error && error.map((error) => <Alert variant={'danger'}>{error}</Alert>)}
+                    {error && error.map((error) => <Alert key={'error' + error} variant={'danger'}>{error}</Alert>)}
                     <h1>Register</h1>
                     <Form>
                         <Form.Row>

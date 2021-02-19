@@ -26,12 +26,13 @@ const CreateProject = () => {
 
     const handleChange2 = e => {
         setState2({
-            ...state,
+            ...state2,
             [e.target.name]: e.target.value,
         });
     }
-
+    console.log()
     const postProject = () => {
+        
         fetch('/api/projects', {
             method: 'POST',
             headers: {
@@ -57,7 +58,7 @@ const CreateProject = () => {
         <Layout>
             <>
                 <Form className='w-50 mx-auto'>
-                    {errors && errors.map((error) => <Alert variant={'danger'}>{error}</Alert>)}
+                    {errors && errors.map((error) => <Alert key={'error' + error} variant={'danger'}>{error}</Alert>)}
                     <h1>Submit Project</h1>
                     <Form.Group>
                         <Form.Label>Project name</Form.Label>

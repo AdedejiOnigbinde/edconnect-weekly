@@ -1,15 +1,33 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Form, Button, Container, Row, Col, Card, ListGroup } from 'react-bootstrap';
 import Layout from './shared/Layout';
 
 const Project = () => {
+    const [projectData, setProjectData] = useState([])
+    const [userData, setUserData] = useState([])
+    useEffect(() => {
+        const queryString = window.location.search;
+        const urlP = new URLSearchParams(queryString);
+        const urlId = urlP.get('id');
+        fetch('/api/projects/' + urlId)
+            .then(async function (response) {
+                const resp = await response.json()
+                setProjectData(resp)
+                fetch('/api/users/' + resp.createdBy)
+                    .then(async function (response2) {
+                        const resp2 = await response2.json()
+                        setUserData(resp2)
+                    })
+            })
+    }, [])
+    
     return (
         <Layout>
             <>
-                <h1>Project 1</h1>
+                <h1>{projectData.name}</h1>
                 <Container>
                     <Row>
-                        <Col><p>Created By<br />Grace</p> </Col>
+                        <Col><p>Created By<br />{userData.firstname + ' ' + userData.lastname }</p> </Col>
                         <Col><p>Date Created<br />2002-04-01</p></Col>
                         <Col xs={4}><p>Last Updated<br />2020-05-06</p></Col>
                         <Col ><Button>Edit Project</Button></Col>
@@ -21,9 +39,7 @@ const Project = () => {
                             <h3>Project abstract</h3>
                             <hr />
                             <p>
-                                I have a dream that one day on the red hills of Georgia, the sons of former slaves and the sons of former slave owners will be able to sit down together at the table of brotherhood.
-                                I have a dream that one day even the state of Mississippi, a state sweltering with the heat of injustice, sweltering with the heat of oppression will be transformed into an oasis of freedom and justice.
-                                I have a dream that my four little children will one day live in a nation where they will not be judged by the color of their skin but by the content of their character. I have a dream today.
+                                {projectData.abstract}
                             </p>
                             <h3>Comments</h3>
                             <Form>
@@ -43,12 +59,12 @@ const Project = () => {
                                     Author(s)
                                 </Card.Header>
                                 <ListGroup>
-                                    <ListGroup.Item>
-                                        Manga Anime
-                                    </ListGroup.Item>
+                                    {projectData.authors && projectData.authors.map((author) => (<ListGroup.Item key={"author" + author }>
+                                        {author}
+                                    </ListGroup.Item>))}
                                 </ListGroup>
                                 <Card.Header>
-                                    <Card.Link href="#">#web</Card.Link>
+                                    {projectData.tags && projectData.tags.map((tag) => (<Card.Link key={"tag" + tag } href="#">{tag}</Card.Link>))}
                                 </Card.Header>
                             </Card>
                             <br />
