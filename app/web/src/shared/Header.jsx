@@ -5,7 +5,6 @@ import { getUserId, logOut } from '../helper';
 
 
 const Header = () => {
-    // const [userId, setuserId] = useState('');
     const [user, setUser] = useState(null);
 
     useEffect(() => {
@@ -46,7 +45,7 @@ const Header = () => {
             </Nav>}
 
             {user && <Nav className='justify-content-end'>
-                <Nav.Link onClick={logOut} >Log Out</Nav.Link>
+                <Nav.Link onClick={logOut} >Logout</Nav.Link>
                 <Navbar.Text><span>Hi {user.firstname}</span></Navbar.Text>
             </Nav>}
         </Navbar>
