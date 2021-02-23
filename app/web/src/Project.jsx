@@ -23,7 +23,6 @@ const Project = () => {
     
     return (
         <Layout>
-            <>
                 <h1>{projectData.name}</h1>
                 <Container>
                     <Row>
@@ -79,7 +78,6 @@ const Project = () => {
                         </Col>
                     </Row>
                 </Container>
-            </>
         </Layout>
     );
 }

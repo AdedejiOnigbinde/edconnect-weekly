@@ -62,7 +62,6 @@ const CreateProject = () => {
 
     return (
         <Layout>
-            <>
                 <Form className='w-50 mx-auto'>
                     {errors && errors.map((error) => <Alert key={'error' + error} variant={'danger'}>{error}</Alert>)}
                     <h1>Submit Project</h1>
@@ -86,7 +85,6 @@ const CreateProject = () => {
                         Continue
                     </Button>
                 </Form>
-            </>
         </Layout>
     );
 }

@@ -38,24 +38,21 @@ const Login = () => {
 
     return (
         <Layout>
-            <>
-
-                <Form className='w-50 mx-auto'>
-                    {error && <Alert key={'error' + error} variant={'danger'}>{error}</Alert>}
-                    <h1>Login</h1>
-                    <Form.Group>
-                        <Form.Label>Email Address</Form.Label>
-                        <Form.Control type='email' placeholder="Email Address" name='email' value={state.email} onChange={handleChange} />
-                    </Form.Group>
-                    <Form.Group>
-                        <Form.Label>Password</Form.Label>
-                        <Form.Control type='password' placeholder="Password" name='password' value={state.password} onChange={handleChange} />
-                    </Form.Group>
-                    <Button variant='primary' onClick={PostUserData}>
-                        Login
+            <Form className='w-50 mx-auto'>
+                {error && <Alert key={'error' + error} variant={'danger'}>{error}</Alert>}
+                <h1>Login</h1>
+                <Form.Group>
+                    <Form.Label>Email Address</Form.Label>
+                    <Form.Control type='email' placeholder="Email Address" name='email' value={state.email} onChange={handleChange} />
+                </Form.Group>
+                <Form.Group>
+                    <Form.Label>Password</Form.Label>
+                    <Form.Control type='password' placeholder="Password" name='password' value={state.password} onChange={handleChange} />
+                </Form.Group>
+                <Button variant='primary' onClick={PostUserData}>
+                    Login
                         </Button>
-                </Form>
-            </>
+            </Form>
         </Layout>
     );
 }
