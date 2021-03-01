@@ -15,7 +15,7 @@ const CreateProject = () => {
     const handleChange = e => {
         const { name, value } = e.target;
         switch (name) {
-            case 'projectName':
+            case 'name':
                 setprojectName(value);
                 break;
             case 'projectAbstract':
@@ -68,7 +68,7 @@ const CreateProject = () => {
                     <h1>Submit Project</h1>
                     <Form.Group>
                         <Form.Label>Project name</Form.Label>
-                        <Form.Control type='text' placeholder="Enter project name" name='projectName' value={projectName} onChange={handleChange} />
+                        <Form.Control type='text' placeholder="Enter project name" name='name' value={projectName} onChange={handleChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Project abstract</Form.Label >
