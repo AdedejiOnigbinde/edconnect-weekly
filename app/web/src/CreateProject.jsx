@@ -39,6 +39,7 @@ const CreateProject = () => {
         data['authors'] = authors;
         data['tags'] = tags;
         data['abstract'] = projectAbstract;
+        console.log(data)
         fetch('/api/projects', {
             method: 'POST',
             headers: {
