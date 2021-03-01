@@ -38,7 +38,7 @@ const Login = () => {
 
     return (
         <Layout>
-            <Form className='w-50 mx-auto' controlId = 'loginForm'>
+            <Form className='w-50 mx-auto' id = 'loginForm'>
                 {error && <Alert key={'error' + error} variant={'danger'}>{error}</Alert>}
                 <h1>Login</h1>
                 <Form.Group>
