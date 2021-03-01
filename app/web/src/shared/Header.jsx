@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Nav, Navbar, Form, FormControl, Button } from 'react-bootstrap';
-import { getUserId, logOut } from '../helper';
-
+import { getUserId} from '../helper';
+import {useHistory} from 'react-router-dom'
 
 
 const Header = () => {
     const [user, setUser] = useState(null);
+    const history = useHistory();
 
     useEffect(() => {
         const initUser = () => {
@@ -22,6 +23,12 @@ const Header = () => {
         }
         initUser()
     }, [])
+
+    const logOut = () => {
+        document.cookie = `uid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
+        setUser(undefined);
+        history.push('/')
+    };
 
    
     return (
