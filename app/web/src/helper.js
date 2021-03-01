@@ -8,7 +8,3 @@ export const getUserId = () => {
     return false;
 }
 
-export const logOut = () => {
-    document.cookie = `uid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-   window.location.href = "/"
-};
