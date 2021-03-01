@@ -62,7 +62,7 @@ const CreateProject = () => {
 
     return (
         <Layout>
-                <Form className='w-50 mx-auto'>
+                <Form className='w-50 mx-auto' id = 'createProjectForm'>
                     {errors && errors.map((error) => <Alert key={'error' + error} variant={'danger'}>{error}</Alert>)}
                     <h1>Submit Project</h1>
                     <Form.Group>
