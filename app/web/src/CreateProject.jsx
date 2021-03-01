@@ -34,18 +34,18 @@ const CreateProject = () => {
     }
 
     const postProject = () => {
+        const data = {}
+        data['name'] = projectName;
+        data['authors'] = authors;
+        data['tags'] = tags;
+        data['abstract'] = projectAbstract;
         fetch('/api/projects', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
             },
 
-            body: JSON.stringify({
-                'authors': authors,
-                'tags': tags,
-                'name': projectName,
-                'abstract': projectAbstract
-            })
+            body: JSON.stringify(data)
         }).then(async function (response) {
             const resp = await response.json()
             if (response.status === 200) {
