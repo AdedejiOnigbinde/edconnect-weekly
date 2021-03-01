@@ -41,10 +41,10 @@ const CreateProject = () => {
             },
 
             body: JSON.stringify({
-                authors: authors,
-                tags: tags,
-                name: projectName,
-                abstract: projectAbstract
+                'authors': authors,
+                'tags': tags,
+                'name': projectName,
+                'abstract': projectAbstract
             })
         }).then(async function (response) {
             const resp = await response.json()
