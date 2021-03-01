@@ -18,7 +18,7 @@ const CreateProject = () => {
             case 'name':
                 setprojectName(value);
                 break;
-            case 'projectAbstract':
+            case 'abstract':
                 setprojectAbstract(value);
                 break;
             case 'authors':
@@ -72,7 +72,7 @@ const CreateProject = () => {
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Project abstract</Form.Label >
-                        <Form.Control as="textarea" rows={8} name='projectAbstract' value={projectAbstract} onChange={handleChange} />
+                        <Form.Control as="textarea" rows={8} name='abstract' value={projectAbstract} onChange={handleChange} />
                     </Form.Group>
                     <Form.Group>
                         <Form.Label>Authors</Form.Label>
