@@ -30,7 +30,7 @@ const Login = () => {
                 document.cookie = `uid=${resp.data.id}; max-age=${60 * 60 * 24 * 7}; path=/`;
                 history.push('/')
             } else {
-                setError('invalid email/password');
+                setError('Invalid email/password');
             }
         });
 
