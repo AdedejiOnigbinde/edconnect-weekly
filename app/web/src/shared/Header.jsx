@@ -26,7 +26,7 @@ const Header = () => {
 
     const logOut = () => {
         document.cookie = `uid= ; expires = Thu, 01 Jan 1970 00:00:00 GMT; path=/`;
-        setUser(undefined);
+        setUser(null);
         history.push('/')
     };
 
