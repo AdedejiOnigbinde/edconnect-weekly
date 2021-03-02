@@ -60,11 +60,11 @@ const Project = () => {
                                 </Card.Header>
                             <ListGroup>
                                 {projectData ? <ListGroup.Item >
-                                    {projectData.authors}
+                                    {projectData.authors + " "}
                                 </ListGroup.Item> : <ListGroup.Item><p>Authors</p></ListGroup.Item>}
                             </ListGroup>
                             <Card.Header>
-                                {projectData ? <Card.Link href="#">{projectData.tag}</Card.Link> : <Card.Link><p>tag</p></Card.Link>}
+                                {projectData ? <Card.Link href="#">{projectData.tags}</Card.Link> : <Card.Link><p>tag</p></Card.Link>}
                             </Card.Header>
                         </Card>
                         <br />
