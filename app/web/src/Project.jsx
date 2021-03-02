@@ -20,64 +20,64 @@ const Project = () => {
                     })
             })
     }, [])
-    
+
     return (
         <Layout>
-                <h1>{projectData.name}</h1>
-                <Container>
-                    <Row>
-                        <Col><p>Created By<br />{userData.firstname + ' ' + userData.lastname }</p> </Col>
-                        <Col><p>Date Created<br />2002-04-01</p></Col>
-                        <Col xs={4}><p>Last Updated<br />2020-05-06</p></Col>
-                        <Col ><Button>Edit Project</Button></Col>
-                    </Row>
-                </Container>
-                <Container>
-                    <Row>
-                        <Col>
-                            <h3>Project abstract</h3>
-                            <hr />
-                            <p>
-                                {projectData.abstract}
-                            </p>
-                            <h3>Comments</h3>
-                            <Form>
-                                <Form.Group>
-                                    <Form.Control as="textarea" rows={4} placeholder="Leave a comment" />
-                                </Form.Group>
-                                <Button variant='primary' type='submit'>
-                                    Submit
+            {projectData ? <h1>{projectData.name}</h1> : <h1>Project1</h1>}
+            <Container>
+                <Row>
+                    <Col>{userData ? <p>Created By<br />{userData.firstname + ' ' + userData.lastname}</p> : <p>Created By<br />Author</p>} </Col>
+                    <Col><p>Date Created<br />2002-04-01</p></Col>
+                    <Col xs={4}><p>Last Updated<br />2020-05-06</p></Col>
+                    <Col ><Button>Edit Project</Button></Col>
+                </Row>
+            </Container>
+            <Container>
+                <Row>
+                    <Col>
+                        <h3>Project abstract</h3>
+                        <hr />
+                        {projectData ? <p>
+                            {projectData.abstract}
+                        </p> : <p>abstract</p>}
+                        <h3>Comments</h3>
+                        <Form>
+                            <Form.Group>
+                                <Form.Control as="textarea" rows={4} placeholder="Leave a comment" />
+                            </Form.Group>
+                            <Button variant='primary' type='submit'>
+                                Submit
                                 </Button>
-                            </Form>
-                        </Col>
-                        <Col>
-                            <h3>Project Details</h3>
-                            <hr />
-                            <Card>
-                                <Card.Header as='h4'>
-                                    Author(s)
+                        </Form>
+                    </Col>
+                    <Col>
+                        <h3>Project Details</h3>
+                        <hr />
+                        <Card>
+                            <Card.Header as='h4'>
+                                Author(s)
                                 </Card.Header>
-                                <ListGroup>
-                                    {projectData.authors && projectData.authors.map((author) => (<ListGroup.Item key={"author" + author }>
-                                        {author}
-                                    </ListGroup.Item>))}
-                                </ListGroup>
-                                <Card.Header>
-                                    {projectData.tags && projectData.tags.map((tag) => (<Card.Link key={"tag" + tag } href="#">{tag}</Card.Link>))}
+                            <ListGroup>
+                                {projectData.authors ? projectData.authors.map((author) => (<ListGroup.Item key={"author" + author}>
+                                    {author}
+                                </ListGroup.Item>)) : <ListGroup.Item><p>Authors</p></ListGroup.Item>}
+                            </ListGroup>
+                            <Card.Header>
+                                {projectData.tags ? projectData.tags.map((tag) => (<Card.Link key={"tag" + tag} href="#">{tag}</Card.Link>)) : <Card.link><p>tag</p></Card.link>}
+                            </Card.Header>
+                        </Card>
+                        <br />
+                        <Card>
+                            <Card.Header as='h4'>
+                                Project files
                                 </Card.Header>
-                            </Card>
-                            <br />
-                            <Card>
-                                <Card.Header as='h4'>
-                                    Project files
-                                </Card.Header>
-                                <Card.Body>
-                                    <Card.Text className='text-center'>No file uploaded yet</Card.Text>
-                                </Card.Body>
-                            </Card>
-                        </Col>
-                    </Row>
-                </Container>
+                            <Card.Body>
+                                <Card.Text className='text-center'>No file uploaded yet</Card.Text>
+                            </Card.Body>
+                        </Card>
+                    </Col>
+                </Row>
+            </Container>
         </Layout>
     );
 }
