@@ -5,6 +5,7 @@ import Layout from './shared/Layout';
 const Project = () => {
     const [projectData, setProjectData] = useState([])
     const [userData, setUserData] = useState([])
+
     useEffect(() => {
         const queryString = window.location.search;
         const urlP = new URLSearchParams(queryString);
@@ -58,12 +59,12 @@ const Project = () => {
                                 Author(s)
                                 </Card.Header>
                             <ListGroup>
-                                {projectData.authors ? projectData.authors.map((author) => (<ListGroup.Item key={"author" + author}>
-                                    {author}
-                                </ListGroup.Item>)) : <ListGroup.Item><p>Authors</p></ListGroup.Item>}
+                                {projectData ? <ListGroup.Item >
+                                    {projectData.authors}
+                                </ListGroup.Item> : <ListGroup.Item><p>Authors</p></ListGroup.Item>}
                             </ListGroup>
                             <Card.Header>
-                                {projectData.tags ? projectData.tags.map((tag) => (<Card.Link key={"tag" + tag} href="#">{tag}</Card.Link>)) : <Card.link><p>tag</p></Card.link>}
+                                {projectData ? <Card.Link href="#">{projectData.tag}</Card.Link> : <Card.Link><p>tag</p></Card.Link>}
                             </Card.Header>
                         </Card>
                         <br />
