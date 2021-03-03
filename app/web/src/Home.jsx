@@ -34,7 +34,7 @@ const Home = () => {
 
 
             </Jumbotron>
-            <Container>
+            <Container class = "showcase">
                 <Row>
                     {projects.map((project) => (
                         <Col key={'project-info' + project.name}>
