@@ -4,7 +4,7 @@ import Layout from './shared/Layout';
 
 const Project = () => {
     const [projectData, setProjectData] = useState([])
-    const [userData, setUserData] = useState([])
+    const [userData, setUserData] = useState(null)
 
     useEffect(() => {
         const queryString = window.location.search;
@@ -14,11 +14,14 @@ const Project = () => {
             .then(async function (response) {
                 const resp = await response.json()
                 setProjectData(resp)
-                fetch('/api/users/' + resp.createdBy)
+                if(resp !== null){
+                    fetch('/api/users/' + resp.createdBy)
                     .then(async function (response2) {
                         const resp2 = await response2.json()
                         setUserData(resp2)
                     })
+                }
+                
             })
     }, [])
 
@@ -64,7 +67,7 @@ const Project = () => {
                                 </ListGroup.Item> : <ListGroup.Item><p>Authors</p></ListGroup.Item>}
                             </ListGroup>
                             <Card.Header>
-                                {projectData ? <Card.Link href="#">{projectData.tags}</Card.Link> : <Card.Link><p>tag</p></Card.Link>}
+                                {projectData ? <Card.Link href="#">{projectData.tags + " "}</Card.Link> : <Card.Link><p>tag</p></Card.Link>}
                             </Card.Header>
                         </Card>
                         <br />
