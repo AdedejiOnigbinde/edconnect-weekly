@@ -27,10 +27,10 @@ const Project = () => {
 
     return (
         <Layout>
-            {projectData ? <h1>{projectData.name}</h1> : <h1>Project1</h1>}
+            {projectData ? <h1 id ="project_name">{projectData.name}</h1> : <h1 id ="project_name">Project1</h1>}
             <Container>
                 <Row>
-                    <Col>{userData ? <p>Created By<br />{userData.firstname + ' ' + userData.lastname}</p> : <p>Created By<br />Author</p>} </Col>
+                    <Col>{userData ? <p id ="project_author">Created By<br />{userData.firstname + ' ' + userData.lastname}</p> : <p id ="project_name">Created By<br />Author</p>} </Col>
                     <Col><p>Date Created<br />2002-04-01</p></Col>
                     <Col xs={4}><p>Last Updated<br />2020-05-06</p></Col>
                     <Col ><Button>Edit Project</Button></Col>
@@ -41,9 +41,9 @@ const Project = () => {
                     <Col>
                         <h3>Project abstract</h3>
                         <hr />
-                        {projectData ? <p>
+                        {projectData ? <p id ="project_abstract">
                             {projectData.abstract}
-                        </p> : <p>abstract</p>}
+                        </p> : <p id ="project_abstract">abstract</p>}
                         <h3>Comments</h3>
                         <Form>
                             <Form.Group>
@@ -62,12 +62,12 @@ const Project = () => {
                                 Author(s)
                                 </Card.Header>
                             <ListGroup>
-                                {projectData ? <ListGroup.Item >
+                                {projectData ? <ListGroup.Item id ="project_authors">
                                     {projectData.authors + " "}
-                                </ListGroup.Item> : <ListGroup.Item><p>Authors</p></ListGroup.Item>}
+                                </ListGroup.Item> : <ListGroup.Item id ="project_authors">Authors</ListGroup.Item>}
                             </ListGroup>
                             <Card.Header>
-                                {projectData ? <Card.Link href="#">{projectData.tags + " "}</Card.Link> : <Card.Link><p>tag</p></Card.Link>}
+                                {projectData ? <Card.Link id ="project_tags" href="#">{projectData.tags + " "}</Card.Link> : <Card.Link id ="project_tags">tag</Card.Link>}
                             </Card.Header>
                         </Card>
                         <br />
