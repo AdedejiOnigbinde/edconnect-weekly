@@ -17,7 +17,8 @@ const Login = () => {
         });
     }
 
-    const PostUserData = () => {
+    const PostUserData = event => {
+        event.preventDefault();
         fetch('/api/login', {
             method: 'POST',
             headers: {
