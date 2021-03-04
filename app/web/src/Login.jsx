@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import { useHistory } from 'react-router-dom';
 import Layout from './shared/Layout';
@@ -39,6 +39,7 @@ const Login = () => {
 
     return (
         <Layout>
+            <>
             <Form className='w-50 mx-auto' id = 'loginForm'>
                 {error && <Alert key={'error' + error} variant='danger'>{error}</Alert>}
                 <h1>Login</h1>
@@ -54,6 +55,7 @@ const Login = () => {
                     Login
                         </Button>
             </Form>
+            </>
         </Layout>
     );
 }
