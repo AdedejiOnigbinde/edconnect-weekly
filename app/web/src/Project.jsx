@@ -3,7 +3,7 @@ import { Form, Button, Container, Row, Col, Card, ListGroup } from 'react-bootst
 import Layout from './shared/Layout';
 
 const Project = () => {
-    const [projectData, setProjectData] = useState([])
+    const [projectData, setProjectData] = useState(null)
     const [userData, setUserData] = useState(null)
 
     useEffect(() => {
