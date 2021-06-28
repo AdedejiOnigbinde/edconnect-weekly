@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React from "react";
 import { Form, Button, Col, Container, Alert } from "react-bootstrap";
 import Layout from "./shared/Layout";
 const SignUp = (prop) => {
   return (
     <Layout>
       <Container>
-        {error &&
+        {/* {error &&
           error.map((error) => (
             <Alert key={"error" + error} variant={"danger"}>
               {error}
             </Alert>
-          ))}
+          ))} */}
         <h1>Register</h1>
         <Form method="POST" action="signup">
           <Form.Row>
@@ -36,8 +35,8 @@ const SignUp = (prop) => {
                 <Form.Label>Program</Form.Label>
                 <Form.Control as="select" name="programs">
                   <option>choose...</option>
-                  {prop.programlist &&
-                    prop.programlist.map((item, index) => (
+                  {prop.programList &&
+                    prop.programList.map((item, index) => (
                       <option key={"program-list-" + item + "-" + index}>
                         {item}
                       </option>
@@ -78,8 +77,8 @@ const SignUp = (prop) => {
                     <Form.Label>Graduation Year</Form.Label>
                     <Form.Control as="select" name="graduationyear">
                       <option>choose...</option>
-                      {prop.graduationlist &&
-                        prop.graduationlist.map((item, index) => (
+                      {prop.graduationList &&
+                        prop.graduationList.map((item, index) => (
                           <option key={"graduation-list-" + item + "-" + index}>
                             {item}
                           </option>

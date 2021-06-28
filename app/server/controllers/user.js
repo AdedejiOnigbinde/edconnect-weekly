@@ -1,21 +1,21 @@
 const express = require('express');
 
-const router = express.Router();
+const router1 = express.Router();
 const {getPrograms, getGradYears } = require('../services/school')
 const {create} = require('../services/user')
 
 
-router.get('/signup', (req, res) => {
+router1.get('/signup', (req, res) => {
  const graduationList = getGradYears();
  const programList = getPrograms();
-res.render('Signup', {programList,graduationList});
+res.render('Signup', {programList:programList, graduationList:graduationList});
 
 });
 
-router.use(express.urlencoded({extended:true}));
+router1.use(express.urlencoded({extended:true}));
 
-router.post('/signup', (req,res)=>{
-    req.body
+router1.post('/signup', (req,res)=>{
+    const user = create(req.body);
 });
 
 
