@@ -4,10 +4,11 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const session = require('express-session');
+const flash = require('express-flash');
 const app = express();
 const SERVER_PORT = process.env.SERVER_PORT;
 
- (async () => {
+(async () => {
 
     await register(app);
     app.use((req, res, next) => {
@@ -15,13 +16,13 @@ const SERVER_PORT = process.env.SERVER_PORT;
         res.header('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');
         next();
     });
-    
+
     app.use(morgan('combined'));
     app.use(bodyParser.json());
     app.use(bodyParser.urlencoded({
         extended: true
     }));
-    
+
     app.use(session({
         secret: 'secret',
         cookie: {
@@ -30,11 +31,12 @@ const SERVER_PORT = process.env.SERVER_PORT;
         resave: true,
         saveUninitialized: false
     }));
-    
+
     app.use('/api', require('./routes/api'));
-   app.use("/", require("./controllers/home"));
+    app.use(flash());
+    app.use("/", require("./controllers/home"));
     app.use("/", require("./controllers/user"));
     app.use(express.static('public'));
-    
+
     app.listen(SERVER_PORT, () => console.log('Server listening on port ' + SERVER_PORT));
-   })()
+})()

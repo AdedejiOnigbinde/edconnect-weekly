@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 
-const Header = () => {
-  const [user, setUser] = useState(null);
-
+const Header = (prop) => {
   const logOut = () => {
-    setUser(null);
     href = "/";
   };
 
@@ -13,6 +10,7 @@ const Header = () => {
     <Navbar bg="primary" variant="dark" className="justify-content-between">
       <Nav>
         <Navbar.Brand href="/">Project Explorer</Navbar.Brand>
+
         <Form inline>
           <FormControl
             type="text"
@@ -29,18 +27,18 @@ const Header = () => {
         </Nav>
       </Nav>
 
-      {!user && (
+      {!prop.user && (
         <Nav className="justify-content-end">
           <Nav.Link href="/signup">Sign Up</Nav.Link>
           <Nav.Link href="/login">Login</Nav.Link>
         </Nav>
       )}
 
-      {user && (
+      {prop.user && (
         <Nav className="justify-content-end">
           <Nav.Link onClick={logOut}>Logout</Nav.Link>
           <Navbar.Text>
-            <span>Hi {user.firstname}</span>
+            <span id="username">Hi {user.firstname}</span>
           </Navbar.Text>
         </Nav>
       )}
