@@ -2,10 +2,6 @@ import React, { useState } from "react";
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 
 const Header = (prop) => {
-  const logOut = () => {
-    href = "/";
-  };
-
   return (
     <Navbar bg="primary" variant="dark" className="justify-content-between">
       <Nav>
@@ -36,9 +32,9 @@ const Header = (prop) => {
 
       {prop.user && (
         <Nav className="justify-content-end">
-          <Nav.Link onClick={logOut}>Logout</Nav.Link>
+          <Nav.Link href="/logout">Logout</Nav.Link>
           <Navbar.Text>
-            <span id="username">Hi {user.firstname}</span>
+            <span id="username">Hi {prop.user.firstname}</span>
           </Navbar.Text>
         </Nav>
       )}

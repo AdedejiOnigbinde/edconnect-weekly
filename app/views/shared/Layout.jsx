@@ -5,7 +5,7 @@ import Footer from "./Footer";
 const Layout = (props) => {
   return (
     <>
-      <Header {...props.user} />
+      <Header user={props.user} />
       <main className="mx-auto py-3 w-75">{props.children}</main>
       <Footer />
     </>

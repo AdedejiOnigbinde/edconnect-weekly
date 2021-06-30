@@ -4,7 +4,7 @@ import Layout from "./shared/Layout";
 
 const Home = (prop) => {
   return (
-    <Layout {...prop.user}>
+    <Layout user={prop.user}>
       <Jumbotron>
         <div>
           <h1 className="display-6"> Welcome To Project Explorer</h1>
