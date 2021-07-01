@@ -36,7 +36,7 @@ router1.get('/login', (req, res) => {
 });
 
 router1.post('/login', (req, res) => {
-    const result2 = authenticate(req.body);
+    const result2 = authenticate(req.body.email, req.body.password);
     if (result2[0] == true) {
         req.session.user = result2[1];
         res.redirect('/')

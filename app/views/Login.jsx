@@ -13,7 +13,7 @@ const Login = (prop) => {
         >
           {
             prop.error2 &&
-            <Alert key={"error" + error2} variant="danger">
+            < Alert key={"error" + prop.error2} variant="danger">
               {prop.error2}
             </Alert>
           }
