@@ -2,23 +2,25 @@ const express = require('express');
 
 const router2 = express.Router();
 const { create } = require('../services/project')
-const { user } = require('./home')
-
+const { getById } = require('../services/project')
+const user = require('../services/user')
 
 router2.get('/projects/submit', (req, res) => {
-    const users = user;
-    if (users == !undefined) {
-        const error3 = req.flash('error')
-        res.render('CreateProject', { error3: error3 });
-    } else {
-        res.redirect('/login')
-    }
+    const error3 = req.flash('error')
+    const user = req.session.user
+    user ? (res.render('CreateProject', { error3: error3, user: user })) :
+        (res.redirect('/login'))
 
 });
 
 router2.use(express.urlencoded({ extended: true }));
 router2.post('/projects/submit', (req, res) => {
-    const result3 = create(req.body)
+    const data = {}
+    data['name'] = req.body.name;
+    data['authors'] = req.body.authors.split(",");
+    data['tags'] = req.body.tags.split("#");
+    data['abstract'] = req.body.abstract;
+    const result3 = create(data)
     if (result3[0]) {
         res.redirect('/')
     } else {
@@ -27,4 +29,12 @@ router2.post('/projects/submit', (req, res) => {
     }
 
 });
+
+router2.get('/projects/:id', (req, res) => {
+    const projectData = getById(req.params.id)
+    const userData = user.getById(projectData.createdBy)
+    res.render('Project', { projectData: projectData, userData: userData });
+
+});
+
 module.exports = router2;

@@ -1,5 +1,5 @@
 import React from "react";
-import { Form, Button, Col, Container, Alert } from "react-bootstrap";
+import { Form, Button, Col, Container, Alert, Row } from "react-bootstrap";
 import Layout from "./shared/Layout";
 const SignUp = (prop) => {
   return (
@@ -13,7 +13,7 @@ const SignUp = (prop) => {
           ))}
         <h1>Register</h1>
         <Form action="signup" method="post">
-          <Form.Row>
+          <Row>
             <Col>
               <Form.Label>First name</Form.Label>
               <Form.Control
@@ -55,7 +55,7 @@ const SignUp = (prop) => {
                 name="password"
               />
 
-              <Form.Row>
+              <Row>
                 <Col>
                   <Form.Label>Matric Number</Form.Label>
                   <Form.Control
@@ -76,9 +76,10 @@ const SignUp = (prop) => {
                       ))}
                   </Form.Control>
                 </Col>
-              </Form.Row>
+              </Row>
             </Col>
-          </Form.Row>
+          </Row>
+          <br></br>
           <Button variant="primary" type="submit">
             Sign Up
           </Button>

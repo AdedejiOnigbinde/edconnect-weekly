@@ -7,7 +7,7 @@ const Header = (prop) => {
       <Nav>
         <Navbar.Brand href="/">Project Explorer</Navbar.Brand>
 
-        <Form inline>
+        <Form className='d-flex'>
           <FormControl
             type="text"
             placeholder="Search Project"
@@ -17,6 +17,7 @@ const Header = (prop) => {
             Search
           </Button>
         </Form>
+
         <Nav>
           <Nav.Link href="/projects/:id">Project</Nav.Link>
           <Nav.Link href="/projects/submit">Submit</Nav.Link>

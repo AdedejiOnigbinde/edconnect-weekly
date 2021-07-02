@@ -7,7 +7,7 @@ const CreateProject = (prop) => {
 
 
     return (
-        <Layout>
+        <Layout user={prop.user}>
             <Form className='w-50 mx-auto' id='createProjectForm' action='/projects/submit' method='post'>
                 {prop.error3 && prop.error3.map((error) => <Alert key={'error' + error} variant={'danger'}>{error}</Alert>)}
                 <h1>Submit Project</h1>

@@ -6,9 +6,7 @@ const Home = (prop) => {
   return (
     <Layout user={prop.user}>
       <Jumbotron>
-        <div>
-          <h1 className="display-6"> Welcome To Project Explorer</h1>
-        </div>
+        <h1 className="display-6"> Welcome To Project Explorer</h1>
         <p>
           Project Explorer is a repository for final year projects across all
           departments at your institution. You can submit your project and
@@ -28,7 +26,7 @@ const Home = (prop) => {
           {prop.project &&
             prop.project.map((project) => (
               <Col key={"project-info" + project.name}>
-                <Card>
+                <Card style={{ height: "12rem" }}>
                   <Card.Body>
                     <Card.Title>
                       <Card.Link href={`/projects/${project.id}`}>

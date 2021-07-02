@@ -12,10 +12,10 @@ const Login = (prop) => {
           method="post"
         >
           {
-            prop.error2 &&
-            < Alert key={"error" + prop.error2} variant="danger">
-              {prop.error2}
-            </Alert>
+            prop.error2 && prop.error2.map((error2) =>
+              < Alert key={"error" + prop.error2} variant="danger">
+                {error2}
+              </Alert>)
           }
 
           < h1 > Login</h1>
