@@ -12,7 +12,7 @@ const SignUp = (prop) => {
             </Alert>
           ))}
         <h1>Register</h1>
-        <Form action="signup" method="post">
+        <Form action="signup" method="post" id="signupForm">
           <Row>
             <Col>
               <Form.Label>First name</Form.Label>
