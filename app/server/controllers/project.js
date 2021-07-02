@@ -31,9 +31,13 @@ router2.post('/projects/submit', (req, res) => {
 });
 
 router2.get('/projects/:id', (req, res) => {
+    const user = req.session.user
     const projectData = getById(req.params.id)
-    const userData = user.getById(projectData.createdBy)
-    res.render('Project', { projectData: projectData, userData: userData });
+    if (projectData !== undefined) {
+        const userData = user.getById(projectData.createdBy)
+    }
+
+    res.render('Project', { projectData: projectData, userData: userData, user: user });
 
 });
 

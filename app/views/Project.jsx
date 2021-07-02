@@ -12,7 +12,7 @@ import Layout from "./shared/Layout";
 const Project = (prop) => {
 
   return (
-    <Layout>
+    <Layout user={prop.user}>
       {prop.projectData ? (
         <h1 id="project_name">{prop.projectData.name}</h1>
       ) : (
