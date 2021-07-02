@@ -66,7 +66,7 @@ const SignUp = (prop) => {
                 </Col>
                 <Col>
                   <Form.Label>Graduation Year</Form.Label>
-                  <Form.Control as="select" name="graduationyear">
+                  <Form.Control as="select" name="graduationYear">
                     <option>choose...</option>
                     {prop.graduationList &&
                       prop.graduationList.map((item, index) => (
