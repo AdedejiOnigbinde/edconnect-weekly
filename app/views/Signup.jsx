@@ -19,7 +19,7 @@ const SignUp = (prop) => {
               <Form.Control
                 type="text"
                 placeholder="First name"
-                name="firstname"
+                name="firstName"
               />
 
               <Form.Label>Email Address</Form.Label>
@@ -45,7 +45,7 @@ const SignUp = (prop) => {
               <Form.Control
                 type="text"
                 placeholder="Last name"
-                name="lastname"
+                name="lastName"
               />
 
               <Form.Label>Password</Form.Label>
