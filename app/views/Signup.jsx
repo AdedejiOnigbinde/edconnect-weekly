@@ -30,7 +30,7 @@ const SignUp = (prop) => {
               />
 
               <Form.Label>Program</Form.Label>
-              <Form.Control as="select" name="programs">
+              <Form.Control as="select" name="program">
                 <option>choose...</option>
                 {prop.programList &&
                   prop.programList.map((item, index) => (
