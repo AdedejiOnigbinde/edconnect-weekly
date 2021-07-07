@@ -6,7 +6,7 @@ const { getAll } = require('../services/project')
 
 router.get('/', (req, res) => {
   const lastIndex = getAll[getAll.length - 1]
-  const project = getAll().slice(1, lastIndex);
+  const project = getAll().slice(0, lastIndex);
   const user = req.session.user;
   res.render('Home', { project: project, user: user });
 

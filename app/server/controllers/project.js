@@ -20,7 +20,7 @@ router2.post('/projects/submit', (req, res) => {
     data['authors'] = req.body.authors.split(",");
     data['tags'] = req.body.tags.split(",");
     data['abstract'] = req.body.abstract;
-    data['createdBy'] = req.session.user;
+    data['createdBy'] = req.session.user.id;
     const result3 = create(data)
     if (result3[0]) {
         res.redirect('/')
@@ -35,7 +35,7 @@ router2.get('/projects/:id', (req, res) => {
     const user = req.session.user
     const projectData = getById(req.params.id)
     if (projectData !== null) {
-        var userData = data.getById(projectData.createdBy.id)
+        var userData = data.getById(projectData.createdBy)
     } else {
         userData = null;
     }
