@@ -16,7 +16,15 @@ router1.get('/signup', (req, res) => {
 router1.use(express.urlencoded({ extended: true }));
 
 router1.post('/signup', (req, res) => {
-    const result = create(req.body);
+    const data = {}
+    data['firstname'] = req.body.firstName;
+    data['lastname'] = req.body.lastName;
+    data['email'] = req.body.email;
+    data['password'] = req.body.password;
+    data['matricNumber'] = req.body.matricNumber;
+    data['graduationYear'] = req.body.graduationYear;
+    data['program'] = req.body.program;
+    const result = create(data);
     if (result[0] == true) {
         req.session.user = result[1];
         res.redirect('/')
@@ -30,7 +38,6 @@ router1.post('/signup', (req, res) => {
 
 router1.get('/login', (req, res) => {
     const error2 = req.flash("error");
-    console.log(error2);
     res.render('Login', { error2: error2 });
 
 });

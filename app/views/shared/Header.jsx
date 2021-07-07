@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Nav, Navbar, Form, FormControl, Button } from "react-bootstrap";
 
 const Header = (prop) => {

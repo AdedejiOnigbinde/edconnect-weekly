@@ -3,7 +3,7 @@ const express = require('express');
 const router2 = express.Router();
 const { create } = require('../services/project')
 const { getById } = require('../services/project')
-const user = require('../services/user')
+const data = require('../services/user')
 
 router2.get('/projects/submit', (req, res) => {
     const error3 = req.flash('error')
@@ -33,8 +33,9 @@ router2.post('/projects/submit', (req, res) => {
 router2.get('/projects/:id', (req, res) => {
     const user = req.session.user
     const projectData = getById(req.params.id)
-    if (projectData !== undefined) {
-        const userData = user.getById(projectData.createdBy)
+    let userData = null;
+    if (projectData !== undefined && projectData !== null) {
+        userData = data.getById(projectData.createdBy)
     }
 
     res.render('Project', { projectData: projectData, userData: userData, user: user });
