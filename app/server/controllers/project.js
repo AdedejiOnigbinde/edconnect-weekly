@@ -31,7 +31,7 @@ router2.post('/projects/submit', (req, res) => {
 
 });
 
-router2.get('/projects/:id', (req, res) => {
+router2.get('/project/:id', (req, res) => {
     const user = req.session.user
     const projectData = getById(req.params.id)
     if (projectData !== null) {

@@ -19,7 +19,7 @@ const Header = (prop) => {
         </Form>
 
         <Nav>
-          <Nav.Link href="/projects/:id">Project</Nav.Link>
+          <Nav.Link href="/project/:id">Project</Nav.Link>
           <Nav.Link href="/projects/submit">Submit</Nav.Link>
         </Nav>
       </Nav>
