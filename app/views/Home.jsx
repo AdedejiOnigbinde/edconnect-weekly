@@ -29,7 +29,7 @@ const Home = (prop) => {
                 <Card style={{ height: "12rem" }}>
                   <Card.Body>
                     <Card.Title>
-                      <Card.Link href={`/projects/${project.id}`}>
+                      <Card.Link href={`/project/${project.id}`}>
                         {project.name}
                       </Card.Link>
                     </Card.Title>
